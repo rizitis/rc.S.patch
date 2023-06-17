@@ -1,0 +1,11 @@
+--- rc.S.BAK	2023-06-17 22:13:44.679091024 +0300
++++ /etc/rc.d/rc.S	2023-06-17 22:33:08.594126544 +0300
+@@ -380,6 +380,8 @@
+ # You are free to modify the rest of the file as you see fit.
+ if [ -x /bin/sed ]; then
+   /bin/sed -i "{1s/^Linux.*/$(/bin/uname -sr)\./}" /etc/motd
++  zgrep -q 'CONFIG_EXT4_FS=y' /proc/config.gz && echo "Huge kernel" || echo "Generic Kernel" >>  /etc/motd
++  cat cat /proc/cmdline >> /etc/motd
+ fi
+ 
+ # If there are SystemV init scripts for this runlevel, run them.
