@@ -5,7 +5,7 @@
  if [ -x /bin/sed ]; then
    /bin/sed -i "{1s/^Linux.*/$(/bin/uname -sr)\./}" /etc/motd
 +  zgrep -q 'CONFIG_EXT4_FS=y' /proc/config.gz && echo "Huge kernel" || echo "Generic Kernel" >>  /etc/motd
-+  cat cat /proc/cmdline >> /etc/motd
++  cat /proc/cmdline >> /etc/motd
  fi
  
  # If there are SystemV init scripts for this runlevel, run them.
